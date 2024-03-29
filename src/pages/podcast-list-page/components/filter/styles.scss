@@ -1,0 +1,27 @@
+.filter {
+  display: flex;
+  align-items: center;
+
+  &__count {
+    background-color: var(--primary-blue-color);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+
+  &__input {
+    border: 1px solid var(--secondary-gray-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px var(--gray-3);
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    &:focus {
+      border-color: var(--blue-1);
+      outline: none;
+      box-shadow: 0 0 4px rgba(52, 152, 219, 0.5);
+    }
+  }
+}

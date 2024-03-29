@@ -1,32 +1,35 @@
 .base-layout {
-  display: grid;
-  grid-template-rows: 50px auto;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  
+  width: 100vw;
+
   &__header {
-    padding: 10px;
-    border-bottom: 1px solid var(--primary-gray-color);
-    color: var(--primary-blue-color);
-    margin-left: 2rem;
-    margin-right: 2rem;
+    height: 60px;
+    margin-top: .5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+    border-bottom: 1px solid var(--primary-gray-color);
+    color: var(--primary-blue-color);
 
-  &__title {
-    font-size: 20px;
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
+    &__title {
+      font-size: 20px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+    }
   }
 
   &__main {
-    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    height: calc(100% - 50px);
+    width: 100%;
+    overflow: hidden;
   }
 }

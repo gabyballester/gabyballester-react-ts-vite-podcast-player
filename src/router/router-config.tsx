@@ -2,8 +2,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "../constants/routes.constants";
 import { BaseLayout } from "../components/layouts/base";
+import { PodtastListPage } from "../pages/podcast-list-page";
 
-const PodcastListPage = () => <div>PODCAST_LIST</div>;
 const PodcastDetailPage = () => <div>PODCAST_DETAIL</div>;
 const EpisodeDetailPage = () => <div>EPISODE_DETAIL</div>;
 
@@ -15,7 +15,7 @@ export const router = () =>
       children: [
         {
           path: ROUTES.PODCAST_LIST,
-          element: <PodcastListPage />,
+          element: <PodtastListPage />,
         },
         {
           path: ROUTES.PODCAST_DETAIL,
