@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "../constants/routes.constants";
 
@@ -23,6 +23,10 @@ export const router = (parentElement: React.ReactNode) =>
         {
           path: ROUTES.EPISODE_DETAIL,
           element: <EpisodeDetailPage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to={ROUTES.NOT_FOUND} />,
         },
       ],
     },
