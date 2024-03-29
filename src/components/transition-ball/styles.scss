@@ -1,8 +1,9 @@
 .ball {
-  width: .5rem;
-  height: .5rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: 3px solid transparent;
+  background-color: transparent;
+  border: 4px solid transparent;
 }
 
 .ball.loading {
@@ -11,11 +12,13 @@
 
 @keyframes pulse {
   0% {
+    background-color: transparent;
     border-color: transparent;
     box-shadow: 0 0 0 var(--primary-blue-color);
   }
 
   100% {
+    background-color: var(--primary-blue-color);
     border-color: var(--primary-blue-color);
   }
 }

@@ -2,15 +2,23 @@
   display: grid;
   grid-template-rows: 50px auto;
   height: 100vh;
-
+  
   &__header {
     padding: 10px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--primary-gray-color);
+    color: var(--primary-blue-color);
     margin-left: 2rem;
     margin-right: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
   }
 
   &__main {
