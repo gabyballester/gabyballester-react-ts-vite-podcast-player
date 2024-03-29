@@ -1,0 +1,24 @@
+.base-layout {
+  display: grid;
+  grid-template-rows: 50px auto;
+  height: 100vh;
+
+  &__header {
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__main {
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}

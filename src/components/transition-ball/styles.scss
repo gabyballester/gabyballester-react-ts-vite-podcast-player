@@ -1,0 +1,21 @@
+.ball {
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.ball.loading {
+  animation: pulse 500ms infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: transparent;
+    box-shadow: 0 0 0 var(--primary-blue-color);
+  }
+
+  100% {
+    border-color: var(--primary-blue-color);
+  }
+}

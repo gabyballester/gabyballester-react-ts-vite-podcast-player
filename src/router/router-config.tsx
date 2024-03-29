@@ -1,16 +1,17 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "../constants/routes.constants";
+import { BaseLayout } from "../components/layouts/base";
 
 const PodcastListPage = () => <div>PODCAST_LIST</div>;
 const PodcastDetailPage = () => <div>PODCAST_DETAIL</div>;
 const EpisodeDetailPage = () => <div>EPISODE_DETAIL</div>;
 
-export const router = (parentElement: React.ReactNode) =>
+export const router = () =>
   createBrowserRouter([
     {
       path: ROUTES.PODCAST_LIST,
-      element: parentElement,
+      element: <BaseLayout />,
       children: [
         {
           path: ROUTES.PODCAST_LIST,
