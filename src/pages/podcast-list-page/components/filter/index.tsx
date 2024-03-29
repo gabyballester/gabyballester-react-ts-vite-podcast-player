@@ -14,9 +14,7 @@ export const Filter: React.FC<FilterProps> = ({
 }) => {
   return (
     <div className="filter">
-      {filteredPodcastsCount > 0 ? (
-        <span className="filter__count">{filteredPodcastsCount}</span>
-      ) : null}
+      <span className="filter__count">{filteredPodcastsCount}</span>
 
       <input
         type="text"

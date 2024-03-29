@@ -1,41 +1,36 @@
-export const useLocalStorage = <T,>() => {
-  const defaultExpirationTime = 1000 * 60 * 60 * 24 * 1; // 1 day
+import { Podcast } from "../types/index";
 
-  const setItem = (
-    key: string,
-    value: T,
-    expirationTime = defaultExpirationTime
-  ) => {
-    if (value instanceof Map) {
-      localStorage.setItem(key, JSON.stringify([...value]));
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-    localStorage.setItem(
-      `${key}_exp`,
-      JSON.stringify(Date.now() + expirationTime)
-    );
+type SetItemProps = {
+  key: string;
+  dataToStore: StoredDataType;
+};
+
+type StoredDataType = {
+  data: Podcast[];
+  savedOn: Date;
+};
+
+export const useLocalStorage = () => {
+  const setItem = ({ key, dataToStore }: SetItemProps) => {
+    localStorage.setItem(key, JSON.stringify({ ...dataToStore }));
   };
 
-  const getItem = (key: string): T | null => {
+  const getItem = (key: string): StoredDataType | null => {
     const item = localStorage.getItem(key);
-    const exp = localStorage.getItem(`${key}_exp`);
-    if (exp && new Date().getTime() > JSON.parse(exp)) {
-      removeItem(key);
-      removeItem(`${key}_exp`);
+    if (!item) {
       return null;
+    } else {
+      try {
+        return JSON.parse( item );
+      } catch (error) {
+        console.error("Error parsing localStorage item:", error);
+        return null;
+      }
     }
-    return item ? JSON.parse(item) : null;
-  };
-
-  const removeItem = (key: string) => {
-    localStorage.removeItem(key);
-    localStorage.removeItem(`${key}_exp`);
   };
 
   return {
     setItem,
     getItem,
-    removeItem,
   };
 };
