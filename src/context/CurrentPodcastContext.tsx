@@ -37,6 +37,8 @@ export const CurrentPodcastProvider = ({
   children: ReactNode;
 }) => {
   const [currentPodcast, setCurrentPodcast] = useState<Podcast>(initialPodcast);
+  
+  
 
   const resetPodcast = () => setCurrentPodcast(initialPodcast);
 
