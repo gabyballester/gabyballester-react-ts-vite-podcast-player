@@ -9,17 +9,25 @@ import { Spinner } from "../../components/spinner";
 import { api } from "../../constants/api.constants";
 
 import "./styles.scss";
+import { transitionTimeout } from "../../constants/keys.constants";
 
 export const PodcastListPage = () => {
-  const { startTransition } = usePageTransitionContext();
+  const { setIsTransitioning } = usePageTransitionContext();
   const podcastListUrl = api.baseUrl + api.endpoint.podcastList({ limit: 100 });
   const { data, isLoading } = useFetchPodcastList(podcastListUrl);
   const { filterText, setFilterText, filteredPodcasts } =
     useFilterPodcastList(data);
 
   useEffect(() => {
+    setIsTransitioning(true);
+    
+    let timeoutId: number;
+    timeoutId = setTimeout(() => {
+      setIsTransitioning(false);
+    }, transitionTimeout);
+
     return () => {
-      startTransition();
+      clearTimeout(timeoutId);
     };
   }, []);
 

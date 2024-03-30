@@ -1,12 +1,12 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
 // Creamos el contexto de la transición de páginas
 const PageTransitionContext = createContext<{
   isTransitioning: boolean;
-  startTransition: () => void;
+  setIsTransitioning: Dispatch<SetStateAction<boolean>>;
 }>({
   isTransitioning: false,
-  startTransition: () => {},
+  setIsTransitioning: () => {},
 });
 
 export const usePageTransitionContext = () => {
@@ -26,14 +26,10 @@ export const PageTransitionProvider = ({
 }) => {
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
 
-  const startTransition = () => {
-    setIsTransitioning(true);
-    setTimeout(() => setIsTransitioning(false), 1800);
-  };
 
   return (
     <PageTransitionContext.Provider
-      value={{ isTransitioning, startTransition }}
+      value={{ isTransitioning, setIsTransitioning }}
     >
       {children}
     </PageTransitionContext.Provider>
