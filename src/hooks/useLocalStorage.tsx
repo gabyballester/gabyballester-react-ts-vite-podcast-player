@@ -6,6 +6,7 @@ type SetItemProps = {
 };
 
 type StoredDataType = {
+  url: string;
   data: Podcast[];
   savedOn: Date;
 };
@@ -21,9 +22,9 @@ export const useLocalStorage = () => {
       return null;
     } else {
       try {
-        return JSON.parse( item );
+        return JSON.parse(item);
       } catch (error) {
-        console.error("Error parsing localStorage item:", error);
+        console.error(`Error on useLocalStorage - getItem: ${error}`);
         return null;
       }
     }

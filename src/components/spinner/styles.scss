@@ -1,0 +1,35 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 3px solid var(--primary-gray-color);
+    border-bottom-color: var(--primary-blue-color);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  &__textContainer {
+    color: var(--primary-blue-color);
+    margin-left: .5rem;
+    display: flex;
+    justify-content: flex-start;
+    width: 80px;
+    font-weight: bold;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
