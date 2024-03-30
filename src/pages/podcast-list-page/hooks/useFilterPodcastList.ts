@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Podcast } from "../../../types";
+import type { Podcast } from "../../../types";
 
 export const useFilterPodcastList = (data: Podcast[] | null) => {
   const [filterText, setFilterText] = useState<string>("");

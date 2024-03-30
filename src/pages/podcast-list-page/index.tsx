@@ -1,20 +1,27 @@
+import { useEffect } from "react";
+import { useFetchPodcastList } from "./hooks/useFetchPodcastList";
+import { useFilterPodcastList } from "./hooks/useFilterPodcastList";
+import { usePageTransitionContext } from "../../context/PageTransitionContext";
 import type { Podcast } from "../../types";
 import { Filter } from "./components/filter";
-import { useFetchPodcastList } from "./hooks/useFetchPodcastList";
-import { PodcastCard } from "./components/podcast-card/index";
-import { useFilterPodcastList } from "./hooks/useFilterPodcastList";
-
-import "./styles.scss";
+import { PodcastCard } from "./components/podcast-card";
 import { Spinner } from "../../components/spinner";
 import { api } from "../../constants/api.constants";
 
+import "./styles.scss";
+
 export const PodcastListPage = () => {
+  const { startTransition } = usePageTransitionContext();
   const podcastListUrl = api.baseUrl + api.endpoint.podcastList({ limit: 100 });
-
   const { data, isLoading } = useFetchPodcastList(podcastListUrl);
-
   const { filterText, setFilterText, filteredPodcasts } =
     useFilterPodcastList(data);
+
+  useEffect(() => {
+    return () => {
+      startTransition();
+    };
+  }, []);
 
   return (
     <div className="podcast-list">

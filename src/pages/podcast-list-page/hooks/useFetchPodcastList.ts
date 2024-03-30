@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { ApiPodcastServiceResponse, Podcast } from "../../../types";
+import type { ApiPodcastServiceResponse, Podcast } from "../../../types";
 import { mapperPodcastServiceResponseToPodcast } from "../../../mappers/mapperPodcastServiceResponseToPodcast";
 import { key } from "../../../constants/keys.constants";
 

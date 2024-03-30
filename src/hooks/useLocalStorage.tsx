@@ -1,4 +1,4 @@
-import { Podcast } from "../types/index";
+import type { Podcast } from "../types/index";
 
 type SetItemProps = {
   key: string;

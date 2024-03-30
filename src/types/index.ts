@@ -4,7 +4,18 @@ export interface Podcast {
   author: string;
   description: string;
   image: string;
-  releaseDate: Date;
+  episodes: Episode[];
+  releaseDate: Date | null;
+}
+
+export interface Episode {
+  id: number;
+  title: string;
+  description: string | undefined;
+  releaseDate: Date | string;
+  duration: number | undefined;
+  audio: string | undefined;
+  image: string | undefined;
 }
 
 export interface ApiPodcastServiceResponse {

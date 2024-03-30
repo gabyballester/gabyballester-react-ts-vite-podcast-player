@@ -1,11 +1,14 @@
 import ReactDOM from "react-dom/client";
-import { StrictMode } from "react";
 import { App } from "./App.tsx";
 
 import "./index.scss";
+import { CurrentPodcastProvider } from "./context/CurrentPodcastContext.tsx";
+import { PageTransitionProvider } from "./context/PageTransitionContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+  <CurrentPodcastProvider>
+    <PageTransitionProvider>
+      <App />
+    </PageTransitionProvider>
+  </CurrentPodcastProvider>
 );
