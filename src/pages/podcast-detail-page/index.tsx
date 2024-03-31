@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import { usePodcastContext } from "../../context/CurrentPodcastContext";
 import { usePageTransitionContext } from "../../context/PageTransitionContext";
 import { transitionTimeout } from "../../constants/keys.constants";
 
 import "./styles.scss";
+import { TableComponent } from "../../components/table";
 
 export const PodcastDetailPage = () => {
-  const { resetPodcast } = usePodcastContext();
   const { setIsTransitioning } = usePageTransitionContext();
 
   useEffect(() => {
@@ -19,7 +18,6 @@ export const PodcastDetailPage = () => {
 
     return () => {
       clearTimeout(timeoutId);
-      resetPodcast();
     };
   }, []);
 
@@ -57,7 +55,7 @@ export const PodcastDetailPage = () => {
       </div>
       <div className="podcast-detail__right">
         <div className="podcast-detail__right__counter">Episodes: 62</div>
-        <div className="podcast-detail__right__table-wrapper">table</div>
+          <TableComponent />
       </div>
     </div>
   );

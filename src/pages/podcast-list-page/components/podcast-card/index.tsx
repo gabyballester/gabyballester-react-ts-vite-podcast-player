@@ -2,21 +2,14 @@ import { Link } from "react-router-dom";
 import type { Podcast } from "../../../../types";
 
 import "./styles.scss";
-import { usePodcastContext } from "../../../../context/CurrentPodcastContext";
 
 
 type Props = { podcast: Podcast };
 
 export const PodcastCard = ({ podcast }: Props) => {
-  const { setCurrentPodcast } = usePodcastContext();
-
-  const handleCardClick = () => {
-    setCurrentPodcast(podcast);
-  };
-
 
   return (
-    <div className="card" onClick={handleCardClick}>
+    <div className="card">
       <Link
         to={`/podcast/${podcast.id}`}
         key={podcast.id}
