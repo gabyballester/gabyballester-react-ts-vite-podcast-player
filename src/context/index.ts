@@ -1,1 +1,1 @@
-export { PageTransitionProvider } from "./PageTransitionContext";
+export * from "./PageTransitionContext";

@@ -1,26 +1,23 @@
 import { useEffect } from "react";
-import { useFetchPodcastList } from "./hooks/useFetchPodcastList";
+import { usePageTransitionContext } from "../../context";
+import { useFetchPodcastList } from "../../hooks/";
 import { useFilterPodcastList } from "./hooks/useFilterPodcastList";
-import { usePageTransitionContext } from "../../context/PageTransitionContext";
 import type { Podcast } from "../../types";
-import { Filter } from "./components/filter";
-import { PodcastCard } from "./components/podcast-card";
-import { Spinner } from "../../components/spinner";
-import { api } from "../../constants/api.constants";
+import { Spinner } from "../../components";
+import { Filter, PodcastCard } from "./components";
+import { transitionTimeout } from "../../constants";
 
 import "./styles.scss";
-import { transitionTimeout } from "../../constants/keys.constants";
 
 export const PodcastListPage = () => {
   const { setIsTransitioning } = usePageTransitionContext();
-  const podcastListUrl = api.baseUrl + api.endpoint.podcastList({ limit: 100 });
-  const { data, isLoading } = useFetchPodcastList(podcastListUrl);
+  const { data, isLoading } = useFetchPodcastList();
   const { filterText, setFilterText, filteredPodcasts } =
     useFilterPodcastList(data);
 
   useEffect(() => {
     setIsTransitioning(true);
-    
+
     let timeoutId: number;
     timeoutId = setTimeout(() => {
       setIsTransitioning(false);

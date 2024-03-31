@@ -3,12 +3,12 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
-  padding: 25px 55px;
-  gap: 90px;
+  padding: 20px 45px;
+  gap: 100px;
 
 
   &__left {
-    width: 300px;
+    width: 270px;
 
     &__detail-card {
       display: flex;
@@ -21,9 +21,7 @@
 
       &__image-container {
         display: flex;
-        // border: 1px solid red;
         height: 193px;
-        width: 211px;
         margin: 0 40px;
         overflow: hidden;
         border-radius: 4%;
@@ -37,7 +35,7 @@
       &__divider {
         height: 1px;
         width: 100%;
-        margin: 20px 0;
+        margin: 17px 0;
         border-top: 1px solid var(--primary-gray-color);
       }
 
@@ -62,8 +60,17 @@
         }
 
         &__full-description {
+          max-height: 200px;
+          max-width: 240px;
+          overflow: hidden;
           font-style: italic;
-          line-height: 19px;
+          line-height: 16px;
+          font-size: 14px;
+          word-wrap: break-word;
+        }
+
+        .scroll {
+          overflow-y: auto;
         }
       }
     }
@@ -72,8 +79,8 @@
   &__right {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    gap: 1.5rem;
+    gap: 1rem;
+    flex: 1;
 
 
     &__counter {

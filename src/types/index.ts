@@ -18,7 +18,7 @@ export interface Episode {
   image: string | undefined;
 }
 
-export interface ApiPodcastServiceResponse {
+export interface ApiPodcastResponse {
   feed: Feed;
 }
 
@@ -59,4 +59,21 @@ export interface ImArtist {
 }
 export interface ImReleaseDate {
   label: string;
+}
+
+export interface ApiEpisodesResponse {
+  resultCount: number;
+  results: Result[];
+}
+
+export interface Result {
+  wrapperType: string;
+  trackId: number;
+  trackName: string;
+  description?: string;
+  shortDescription?: string;
+  previewUrl?: string;
+  releaseDate: string;
+  trackTimeMillis: number;
+  artworkUrl160?: string;
 }

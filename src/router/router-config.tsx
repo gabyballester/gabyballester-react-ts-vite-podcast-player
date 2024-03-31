@@ -1,9 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-
-import { ROUTES } from "../constants/routes.constants";
-import { BaseLayout } from "../components/layouts/base";
-import { PodcastListPage } from "../pages/podcast-list-page";
-import { PodcastDetailPage } from "../pages/podcast-detail-page";
+import { ROUTES } from "../constants";
+import { BaseLayout } from "../components";
+import { PodcastDetailPage, PodcastListPage } from "../pages";
 
 const EpisodeDetailPage = () => <div>EPISODE_DETAIL</div>;
 

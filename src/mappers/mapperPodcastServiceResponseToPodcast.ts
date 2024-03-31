@@ -1,7 +1,7 @@
-import type { ApiPodcastServiceResponse, Podcast } from "../types";
+import type { ApiPodcastResponse, Podcast } from "../types";
 
-export const mapperPodcastServiceResponseToPodcast = (
-  podcastServiceResponse: ApiPodcastServiceResponse
+export const mapperPodcastsResponseToPodcasts = (
+  podcastServiceResponse: ApiPodcastResponse
 ): Podcast[] => {
   return podcastServiceResponse.feed.entry.map((entry) => ({
     id: entry.id.attributes["im:id"],

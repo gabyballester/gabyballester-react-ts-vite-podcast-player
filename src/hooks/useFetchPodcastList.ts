@@ -1,42 +1,42 @@
 import { useEffect, useState } from "react";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { ApiPodcastServiceResponse, Podcast } from "../../../types";
-import { mapperPodcastServiceResponseToPodcast } from "../../../mappers/mapperPodcastServiceResponseToPodcast";
-import { key } from "../../../constants/keys.constants";
+import { useLocalStorage } from ".";
+import { ApiPodcastResponse, Podcast } from "../types";
+import { mapperPodcastsResponseToPodcasts } from "../mappers";
+import { expirationTime, key } from "../constants";
 
-export const useFetchPodcastList = (url: string) => {
-  const { getItem, setItem } = useLocalStorage();
+export const useFetchPodcastList = () => {
+  const { getItem, setItem } = useLocalStorage<Podcast>();
   const [data, setData] = useState<Podcast[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const expirationTime = 1000 * 60 * 60 * 24 * 1; // 1 day in milliseconds
+  const url = `https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json`;
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
 
       try {
-        const response = await fetch(url, { method: "GET" });
+        const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          console.log("useFetchPodcastList: Network response was not ok");
+          throw new Error("useFetchPodcastList: Network response was not ok");
         }
 
-        const responseData =
-          (await response.json()) as ApiPodcastServiceResponse;
-        const mappedData = mapperPodcastServiceResponseToPodcast(responseData);
+        const responseData = (await response.json()) as ApiPodcastResponse;
+        const mappedPodcastList = mapperPodcastsResponseToPodcasts(responseData);
 
-        setData(mappedData);
+        setData(mappedPodcastList);
         setItem({
           key: key.podcastList,
           dataToStore: {
             url,
-            data: mappedData,
+            data: mappedPodcastList,
             savedOn: new Date(),
           },
         });
       } catch (error) {
-        console.error(`Error fetching data: ${error}`);
+        console.error(`useFetchPodcastList: Error fetching data: ${error}`);
         setData(null);
       } finally {
         setIsLoading(false);

@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-import { usePageTransitionContext } from "../../../context/PageTransitionContext";
-import { TransitionBall } from "../../transition-ball";
+import { usePageTransitionContext } from "../../context";
+import { TransitionBall } from "..";
 
 import "./styles.scss";
 

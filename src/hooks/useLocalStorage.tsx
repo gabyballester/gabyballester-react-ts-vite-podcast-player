@@ -1,22 +1,20 @@
-import type { Podcast } from "../types/index";
-
-type SetItemProps = {
+type SetItemProps<T> = {
   key: string;
-  dataToStore: StoredDataType;
+  dataToStore: StoredDataType<T>;
 };
 
-type StoredDataType = {
+type StoredDataType<T> = {
   url: string;
-  data: Podcast[];
+  data: T[];
   savedOn: Date;
 };
 
-export const useLocalStorage = () => {
-  const setItem = ({ key, dataToStore }: SetItemProps) => {
+export const useLocalStorage = <T,>() => {
+  const setItem = ({ key, dataToStore }: SetItemProps<T>) => {
     localStorage.setItem(key, JSON.stringify({ ...dataToStore }));
   };
 
-  const getItem = (key: string): StoredDataType | null => {
+  const getItem = (key: string): StoredDataType<T> | null => {
     const item = localStorage.getItem(key);
     if (!item) {
       return null;
