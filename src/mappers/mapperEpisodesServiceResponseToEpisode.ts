@@ -1,4 +1,4 @@
-import { ApiEpisodesResponse, Episode } from "../types";
+import type { ApiEpisodesResponse, Episode } from "../types";
 
 export const mapperEpisodesResponseToEpisodes = (
   podcastServiceResponse: ApiEpisodesResponse

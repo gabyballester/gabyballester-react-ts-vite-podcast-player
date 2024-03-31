@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../../hooks";
-import { ApiEpisodesResponse, Episode, Podcast } from "../../../types";
+import type { ApiEpisodesResponse, Episode, Podcast } from "../../../types";
 import { mapperEpisodesResponseToEpisodes } from "../../../mappers";
 import { expirationTime, key } from "../../../constants";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const useFetchEpisodeList = ({ podcastDetail }: Props) => {
-  const { getItem, setItem } = useLocalStorage<Episode>();
+  const { getItem, setItem } = useLocalStorage<Episode[]>();
   const [data, setData] = useState<Episode[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

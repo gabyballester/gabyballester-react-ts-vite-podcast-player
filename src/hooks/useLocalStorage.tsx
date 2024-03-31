@@ -4,8 +4,8 @@ type SetItemProps<T> = {
 };
 
 type StoredDataType<T> = {
-  url: string;
-  data: T[];
+  url?: string;
+  data: T;
   savedOn: Date;
 };
 

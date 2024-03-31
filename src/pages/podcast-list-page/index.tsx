@@ -18,8 +18,7 @@ export const PodcastListPage = () => {
   useEffect(() => {
     setIsTransitioning(true);
 
-    let timeoutId: number;
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setIsTransitioning(false);
     }, transitionTimeout);
 

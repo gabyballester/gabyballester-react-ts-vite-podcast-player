@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from ".";
-import { ApiPodcastResponse, Podcast } from "../types";
+import type { ApiPodcastResponse, Podcast } from "../types";
 import { mapperPodcastsResponseToPodcasts } from "../mappers";
 import { expirationTime, key } from "../constants";
 
 export const useFetchPodcastList = () => {
-  const { getItem, setItem } = useLocalStorage<Podcast>();
+  const { getItem, setItem } = useLocalStorage<Podcast[]>();
   const [data, setData] = useState<Podcast[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

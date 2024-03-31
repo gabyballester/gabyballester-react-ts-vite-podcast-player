@@ -85,3 +85,13 @@ $date_duration_width: 120;
     }
   }
 }
+
+.counter {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  height: 3.5rem;
+  box-shadow: 0px 8px 14px -3px var(--secondary-gray-color);
+  font-weight: bold;
+  font-size: 23px;
+}

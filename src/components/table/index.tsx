@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 import { useFetchEpisodeList } from "./hooks/useFetchEpisodeList";
-import { Podcast } from "../../types";
+import { useLocalStorage } from "../../hooks";
+import type { Episode, Podcast } from "../../types";
 import { Spinner } from "..";
 import { formatDate, formatDuration } from "../../helper";
+import { key } from "../../constants";
 
 import "./styles.scss";
 
@@ -10,13 +13,32 @@ type Props = {
 };
 
 export const TableComponent = ({ podcastDetail }: Props) => {
-  const { data, isLoading } = useFetchEpisodeList({podcastDetail});
+  const { data, isLoading } = useFetchEpisodeList({ podcastDetail });
+  const { setItem } = useLocalStorage<Episode>();
+
+  const handleSaveEpisodeAndPodcastDetail = (episode: Episode) => {
+    setItem({
+      key: key.podcastDetail(podcastDetail.id.toString()),
+      dataToStore: {
+        data: episode,
+        savedOn: new Date(),
+      },
+    });
+
+    setItem({
+      key: key.episodeDetail(episode.id.toString()),
+      dataToStore: {
+        data: episode,
+        savedOn: new Date(),
+      },
+    });
+  };
 
   return isLoading ? (
     <Spinner showText />
   ) : data ? (
     <>
-      <div className="podcast-detail__right__counter">
+      <div className="counter">
         Episodes: {data.length}
       </div>
 
@@ -29,12 +51,21 @@ export const TableComponent = ({ podcastDetail }: Props) => {
         <div className="table__body">
           {data.map((episode, index) => (
             <div
+              onClick={() => handleSaveEpisodeAndPodcastDetail(episode)}
               className={`table__body__row ${
                 index % 2 === 0 ? "table__body__odd-row" : ""
               }`}
               key={episode.id}
             >
-              <div className="table__body__row__title">{episode.title}</div>
+              <div className="table__body__row__title">
+                <Link
+                  to={`/podcast/${podcastDetail.id}/episode/${episode.id}`}
+                  key={episode.id}
+                  className="card__link"
+                >
+                  {episode.title}
+                </Link>
+              </div>
               <div className="table__body__row__date">
                 {formatDate(episode.releaseDate)}
               </div>

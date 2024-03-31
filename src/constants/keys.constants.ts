@@ -1,6 +1,8 @@
 export const key = {
   podcastList: "podcastList",
   episodeList: "episodeList",
+  episodeDetail: (id: string) => "episodeDetail" + id,
+  podcastDetail: (id: string) => "podcastDetail" + id,
 };
 
 export const transitionTimeout = 1800;

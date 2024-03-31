@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePageTransitionContext } from "../../context";
 import { useFetchPodcastList } from "../../hooks";
-import { Podcast } from "../../types";
 import { TableComponent, Spinner } from "../../components";
 import { transitionTimeout } from "../../constants";
 import { containsHTML } from "../../helper";
@@ -10,28 +9,31 @@ import { containsHTML } from "../../helper";
 import "./styles.scss";
 
 export const PodcastDetailPage = () => {
+  const navigate = useNavigate();
   const { podcastId } = useParams<{ podcastId: string }>();
   const { data: podcastList, isLoading } = useFetchPodcastList();
   const { setIsTransitioning } = usePageTransitionContext();
-  const [podcastDetail, setPodcastDetail] = useState<Podcast | null>();
+
+  const podcastDetail = useMemo(() => {
+    if (podcastList && podcastList.length > 0) {
+      return podcastList.find((item) => item.id === podcastId);
+    }
+    return null;
+  }, [podcastList, podcastId]);
 
   useEffect(() => {
     setIsTransitioning(true);
 
-    if (podcastList && podcastList.length > 0) {
-      const foundPodcast = podcastList.find((item) => item.id === podcastId);
-      setPodcastDetail(foundPodcast ?? null);
-    }
-
-    let timeoutId: number;
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setIsTransitioning(false);
     }, transitionTimeout);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [podcastList]);
+  }, [podcastList, podcastId]);
+
+  const goBack = () => navigate(-1);
 
   return (
     <div className="podcast-detail">
@@ -39,7 +41,7 @@ export const PodcastDetailPage = () => {
         <Spinner showText />
       ) : podcastDetail ? (
         <>
-          <div className="podcast-detail__left">
+          <div className="podcast-detail__left" onClick={goBack}>
             <div className="podcast-detail__left__detail-card">
               <div className="podcast-detail__left__detail-card__image-container">
                 <img src={podcastDetail?.image} alt="Podcast Image" />
