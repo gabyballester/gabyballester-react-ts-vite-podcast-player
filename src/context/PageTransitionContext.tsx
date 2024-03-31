@@ -1,6 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
-// Creamos el contexto de la transición de páginas
 const PageTransitionContext = createContext<{
   isTransitioning: boolean;
   setIsTransitioning: Dispatch<SetStateAction<boolean>>;
