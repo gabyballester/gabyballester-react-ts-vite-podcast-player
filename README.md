@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+## Tech Assessment: Podcaster
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+For this techn assessment, I´ve recreated a podcast player using the Apple Podcast API."
 
-Currently, two official plugins are available:
+## Candidate: Gabriel Ballester
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Made with: React + TypeScript + Vite
 
-## Expanding the ESLint configuration
+In this repository, you will find a README file detailing how to run the application in both modes: development (dev) and production (build).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Running the Project
 
-- Configure the top-level `parserOptions` property like this:
+#### Development Mode (dev)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+To run the application in development mode, follow these steps:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone this repository.
+2. Navigate to the project folder in your terminal.
+3. Install the dependencies using `npm install` or `yarn install`.
+4. Run the following command to start the development server: `yarn dev`.
+
+#### Production Mode (build)
+
+To generate a production-ready build of the application, follow these steps:
+
+1. Ensure you have completed steps 1-3 from the development mode.
+2. Run the following command to build the production version: `yarn build`
+
+This will generate an optimized version of the application in the dist folder.
+
+To view the production version, you can use live-server or a similar tool.
+
+Thank you for taking the time to review the project. :+1:
